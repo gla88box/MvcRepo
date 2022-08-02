@@ -1,0 +1,74 @@
+﻿@model Person
+
+@{
+    ViewData["Title"] = "Addresses";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>View all Addresses for Person Record</h1>
+
+<p>
+    <input type="button" value="Create new Address" class="btn btn-primary" onclick="location.href='@Url.Action("Create", "Addresses", new{ personId = Model.Id})'" /> | 
+    <input type="button" value="Back to Person Record" class="btn btn-primary" onclick="location.href='@Url.Action("Details", "People", new { id = Model.Id})'" />
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Addresses.First().Line1)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Addresses.First().Line2)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Addresses.First().Town)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Addresses.First().County)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Addresses.First().Postcode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Addresses.First().CreatedOn)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Addresses.First().IsActive)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Addresses)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Line1)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Line2)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Town)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.County)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Postcode)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreatedOn)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IsActive)
+                </td>
+                <td>
+                    <input type="button" value="Edit" class="btn btn-primary" onclick="location.href='@Url.Action("Edit", "Addresses", new{ addressId = item.Id})'" /> |
+                    <input type="button" value="Details" class="btn btn-primary" onclick="location.href='@Url.Action("Details", "Addresses", new{ addressId = item.Id})'" /> |
+                    <input type="button" value="Delete" class="btn btn-danger" onclick="location.href='@Url.Action("Delete", "Addresses", new{ addressId = item.Id})'" />
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

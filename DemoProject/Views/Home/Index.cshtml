@@ -1,0 +1,28 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    @if (SignInManager.IsSignedIn(User))
+    {
+    <div>
+        <h1 class="display-4">Welcome @User.Identity.Name</h1>
+        <p>Please navigate to Person Area</p>
+    </div>
+    <div>
+        <input type="button" value="Person Area" class="btn btn-primary" onclick="location.href='@Url.Action("Index", "People")'" />
+    </div>
+    }
+    else
+    {
+        <div>
+            <h1 class="display-4">Welcome</h1>
+            <p>Please login to use the website</p>
+        </div>
+    }
+
+</div>

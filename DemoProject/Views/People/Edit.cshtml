@@ -1,0 +1,66 @@
+﻿@model Person
+
+@{
+    ViewData["Title"] = "Edit a person";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Editing person record</h1>
+
+<h4>Person</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="FirstName" class="control-label"></label>
+                <input asp-for="FirstName" class="form-control" />
+                <span asp-validation-for="FirstName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SecondName" class="control-label"></label>
+                <input asp-for="SecondName" class="form-control" />
+                <span asp-validation-for="SecondName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Surname" class="control-label"></label>
+                <input asp-for="Surname" class="form-control" />
+                <span asp-validation-for="Surname" class="text-danger"></span>
+            </div>
+            <input type="hidden" asp-for="Id" />
+            <input type="hidden" asp-for="CreatedOn" />
+            <div>
+                @Html.DisplayNameFor(model => model.CreatedOn)
+                @Html.DisplayFor(model => model.CreatedOn)
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="IsActive" /> @Html.DisplayNameFor(model => model.IsActive)
+                </label>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+        
+    </div>
+</div>
+
+<div>
+    <input type="button" value="Back to List" class="btn btn-primary" onclick="location.href = '@Url.Action("Index", "People")'" />
+</div>
+<div>
+    @if (!Model.IsActive)
+    {
+        <script type="text/javascript">
+            window.onload = function () {
+                alert("Record INACTIVE!");
+            };
+        </script>
+    }
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
