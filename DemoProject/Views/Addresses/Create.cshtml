@@ -1,0 +1,77 @@
+﻿@model Address
+
+@{
+    ViewData["Title"] = "Create Address";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Create Address</h1>
+
+<h4>Address</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Line1" class="control-label"></label>
+                <input asp-for="Line1" class="form-control" />
+                <span asp-validation-for="Line1" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Line2" class="control-label"></label>
+                <input asp-for="Line2" class="form-control" />
+                <span asp-validation-for="Line2" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Town" class="control-label"></label>
+                <input asp-for="Town" class="form-control" />
+                <span asp-validation-for="Town" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="County" class="control-label"></label>
+                <input asp-for="County" class="form-control" />
+                <span asp-validation-for="County" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Postcode" class="control-label"></label>
+                <input asp-for="Postcode" class="form-control" />
+                <span asp-validation-for="Postcode" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DateUsedFrom" class="control-label"></label>
+                <input asp-for="DateUsedFrom" class="form-control" />
+                <span asp-validation-for="DateUsedFrom" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DateUsedTo" class="control-label"></label>
+                <input asp-for="DateUsedTo" class="form-control" />
+                <span asp-validation-for="DateUsedTo" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="IsCorrespondence" /> @Html.DisplayNameFor(model => model.IsCorrespondence)
+                </label>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="IsBilling" /> @Html.DisplayNameFor(model => model.IsBilling)
+                </label>
+            </div>
+            <div>
+                <input type="hidden" asp-for="PersonId" />
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <input type="button" value="Back to List" class="btn btn-primary" onclick="location.href='@Url.Action("Index", "Addresses", Model)'" />
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
